@@ -1,34 +1,45 @@
-//14-1-2026
-#include <iostream>
+//21-1-2026
+#include<iostream>
 using namespace std;
 
-int main() {
-    int n, sum = 0;
-    cout << "Enter the number of elements: " << endl;
-    cin >> n;
+int main(){
 
-    int arr[n];
+    string a;
+    cout << "Enter a text: " << endl;
+    cin >> a;
 
-    cout << "Enter numbers:" << endl;
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-        sum += arr[i];
+
+    string b;
+    cout << "Enter a pattern: " << endl;
+    cin >> b;
+
+
+    int m=a.size();
+    int n=b.size();
+
+    int ans = -1;
+    int index = -1;
+
+    for(int i=0;i<(m-n)+1;i++){
+       bool flag=true;
+    for(int j=0;j<n&&flag==true;j++){
+        if(a[j+i]!=b[j]){
+            flag = false;
+            break;
+        }
     }
-
-    int max = arr[0];
-    int min = arr[0];
-
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > max)
-            max = arr[i];
-        if (arr[i] < min)
-            min = arr[i];
+    if(flag==true){
+        ans=i+1;
+        index=i+1;
+        break;
     }
+  }
+  cout << "Total count: "<< ans << endl;
 
-    cout << "sum of numbers: " << sum << endl;
-    cout << "average of numbers: " << (float)sum / n << endl;
-    cout << "maximum number: " << max << endl;
-    cout << "minimum number: " << min << endl;
-
-    return 0;
+  if(index != -1){
+    cout << "Pattern found at index " << index << endl;
+  }
+  else{
+    cout << "Pattern not found" << endl;
+  }
 }
